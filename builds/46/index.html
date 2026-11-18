@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Task Buddy</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,Roboto,sans-serif;background:#f4f6fb;color:#222;min-height:100vh;padding:16px}h1{text-align:center;margin:12px 0}img.logo{display:block;margin:0 auto;width:72px}form{display:flex;gap:8px;margin:16px 0}input{flex:1;padding:12px;border-radius:10px;border:1px solid #ccc;font-size:16px}button{padding:12px 16px;border:0;border-radius:10px;background:#4f6df5;color:#fff;font-size:16px}li{list-style:none;background:#fff;padding:14px;border-radius:10px;margin-bottom:8px}
+</style>
+</head>
+<body>
+<img class="logo" src="logo.png" alt="logo">
+<h1>Task Buddy</h1>
+<form id="f"><input id="t" placeholder="New task"><button>Add</button></form>
+<ul id="l"></ul>
+<script>
+const f=document.getElementById('f'),t=document.getElementById('t'),l=document.getElementById('l');let tasks=JSON.parse(localStorage.getItem('tasks')||'[]');function r(){l.innerHTML='';tasks.forEach((x,i)=>{const li=document.createElement('li');li.textContent=x;li.onclick=()=>{tasks.splice(i,1);s()};l.appendChild(li)})}function s(){localStorage.setItem('tasks',JSON.stringify(tasks));r()}f.onsubmit=e=>{e.preventDefault();if(t.value.trim()){tasks.push(t.value.trim());t.value='';s()}};r();
+</script>
+</body>
+</html>
